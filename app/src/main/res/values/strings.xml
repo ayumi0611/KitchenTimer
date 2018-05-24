@@ -5,4 +5,7 @@
     <string name="colon">:</string>
     <string name="save">保存</string>
     <string name="back_display">back</string>
+    <string name="reset">リセット</string>
+    <string name="stop">ストップ</string>
+    <string name="start">スタート</string>
 </resources>

@@ -64,7 +64,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/zero"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/zero"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text=":"
+            android:text="@string/colon"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -91,7 +91,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/zero"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/zero"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -163,7 +163,7 @@
             android:layout_margin="7dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:text="ストップ"
+            android:text="@string/stop"
             android:textColor="#ffffff"
             android:textStyle="bold" />
 
@@ -173,7 +173,7 @@
             android:layout_margin="7dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:text="リセット"
+            android:text="@string/reset"
             android:textColor="#ffffff"
             android:textStyle="bold" />
 
@@ -183,7 +183,7 @@
             android:layout_margin="7dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:text="スタート"
+            android:text="@string/start"
             android:textColor="#ffffff"
             android:textStyle="bold" />
 
