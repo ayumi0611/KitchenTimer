@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">KitchenTimer</string>
     <string name="add_recipe">add</string>
+    <string name="zero">0</string>
+    <string name="colon">:</string>
+    <string name="save">保存</string>
 </resources>
