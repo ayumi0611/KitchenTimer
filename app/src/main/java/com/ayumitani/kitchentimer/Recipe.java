@@ -10,30 +10,29 @@ public class Recipe extends RealmObject {
     @PrimaryKey
     int id;
     @Required
-    private String recipe;
+    private String name;
     @Required
-    private String time;
+    private String cookingTime;
 
 
-
-    public String getRecipe() {
-        return recipe;
+    public String getName() {
+        return name;
     }
 
-    public String getTime() {
-        return time;
+    public String getCookingTime() {
+        return cookingTime;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setRecipe(String recipe) {
-        this.recipe = recipe;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setCookingTime(String cookingTime) {
+        this.cookingTime = cookingTime;
     }
 
     public void setId(int id) {

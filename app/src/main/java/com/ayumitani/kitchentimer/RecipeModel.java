@@ -21,8 +21,8 @@ public class RecipeModel {
         }
         Recipe recipe = new Recipe();
         recipe.setId(recipeId);
-        recipe.setRecipe(recipeName);
-        recipe.setTime(cookingTime);
+        recipe.setName(recipeName);
+        recipe.setCookingTime(cookingTime);
 
         mRealm.beginTransaction();
 
