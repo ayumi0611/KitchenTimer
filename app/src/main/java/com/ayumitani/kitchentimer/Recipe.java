@@ -6,7 +6,6 @@ import io.realm.annotations.Required;
 
 public class Recipe extends RealmObject {
 
-    @Required
     @PrimaryKey
     int id;
     @Required
