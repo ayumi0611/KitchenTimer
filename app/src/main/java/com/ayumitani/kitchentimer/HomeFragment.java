@@ -70,4 +70,62 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    // button_plusのOnClickListenerメソッド
+    private class OnClickButtonPlus1 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+
+        }
+    }
+
+    private class OnClickButtonPlus2 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class OnClickButtonPlus3 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class OnClickButtonPlus4 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    // button_minusのOnClickListenerメソッド
+    private class OnClickButtonMinus1 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class OnClickButtonMinus2 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class OnClickButtonMinus3 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class OnClickButtonMinus4 implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
 }
