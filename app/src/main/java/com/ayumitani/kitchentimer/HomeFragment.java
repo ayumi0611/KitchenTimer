@@ -2,6 +2,8 @@ package com.ayumitani.kitchentimer;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -16,7 +18,8 @@ import android.widget.TextView;
 
 public class HomeFragment extends Fragment {
 
-    Fragment mFragment = this;
+    private SoundPool mSoundPool;
+    private int mSoundId;
 
     NumberPicker mMinutePicker;
     NumberPicker mSecondPicker;
@@ -56,6 +59,25 @@ public class HomeFragment extends Fragment {
         Button startButton = view.findViewById(R.id.button_start);
         startButton.setOnClickListener(new OnClickStartButton());
 
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        mSoundPool = new SoundPool.Builder()
+                .setAudioAttributes(audioAttributes)
+                .setMaxStreams(1)
+                .build();
+
+        mSoundId = mSoundPool.load(this.getActivity(), R.raw.time_up, 1);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mSoundPool.unload(mSoundId);
+        mSoundPool.release();
     }
 
 
@@ -121,7 +143,11 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onFinish() {
+            //音を鳴らす
+            mSoundPool.play(mSoundId, 1.0f, 1.0f, 0, 0, 1);
+            //残り時間を表示するViewを見えなくする
             mRemainingTimeView.setVisibility(View.GONE);
+            //timePickerを表示する
             mTimePicker.setVisibility(View.VISIBLE);
         }
 
