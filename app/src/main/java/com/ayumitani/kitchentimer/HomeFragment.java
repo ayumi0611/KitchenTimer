@@ -1,5 +1,6 @@
 package com.ayumitani.kitchentimer;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -13,12 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 public class HomeFragment extends Fragment {
 
     Fragment mFragment = this;
+
+    NumberPicker mMinutePicker;
+    NumberPicker mSecondPicker;
+
+    TextView mRemainingTimeView;
+    LinearLayout mTimePicker;
 
     @Nullable
     @Override
@@ -32,19 +36,17 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mMinutePicker = view.findViewById(R.id.picker1);
+        mSecondPicker = view.findViewById(R.id.picker2);
 
-        NumberPicker numberPicker1 = view.findViewById(R.id.picker1);
-        NumberPicker numberPicker2 = view.findViewById(R.id.picker2);
+        mMinutePicker.setMaxValue(59);
+        mMinutePicker.setMinValue(0);
 
-        numberPicker1.setMaxValue(59);
-        numberPicker1.setMinValue(0);
+        mSecondPicker.setMaxValue(59);
+        mSecondPicker.setMinValue(0);
 
-        numberPicker2.setMaxValue(59);
-        numberPicker2.setMinValue(0);
-
-        final LinearLayout linearLayout = view.findViewById(R.id.time_picker);
-        final TextView textView = view.findViewById(R.id.timer);
-
+        mRemainingTimeView = view.findViewById(R.id.remaining_time_view);
+        mTimePicker = view.findViewById(R.id.time_picker);
 
         // viewをidから取得する
         FloatingActionButton transitionRecipeListButton = view.findViewById(R.id.transition_recipe_list);
@@ -52,26 +54,10 @@ public class HomeFragment extends Fragment {
         transitionRecipeListButton.setOnClickListener(new OnClickTransitionRecipeListListener());
 
         Button startButton = view.findViewById(R.id.button_start);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearLayout.setVisibility(View.GONE);
-                textView.setVisibility(View.VISIBLE);
-
-            }
-        });
-
-        Button resetButton = view.findViewById(R.id.button_reset);
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearLayout.setVisibility(View.VISIBLE);
-                textView.setVisibility(View.GONE);
-            }
-        });
-
+        startButton.setOnClickListener(new OnClickStartButton());
 
     }
+
 
     // OnClickListenerを内包してる
     private class OnClickTransitionRecipeListListener implements View.OnClickListener {
@@ -83,19 +69,35 @@ public class HomeFragment extends Fragment {
                     .add(R.id.fragment_container, new RecipeListFragment()).commit();
         }
     }
+    
 
+    private class OnClickStartButton implements View.OnClickListener {
+        @SuppressLint("DefaultLocale")
+        @Override
+        public void onClick(View v) {
+            int minuteTime = mMinutePicker.getValue();
+            int secondTime = mSecondPicker.getValue() + 1;
 
-    private void tick(){}
+            KitchenTimer countDownTimer = new KitchenTimer(minuteTime * 60 * 1000 + secondTime * 1000, 1000);
 
-    private void finishTimer(){
-        //v.playSoundEffect(SoundEffectConstants.CLICK);
+            mRemainingTimeView.setText(formatTime(minuteTime, secondTime));
 
+            mRemainingTimeView.setText(formatTime(minuteTime, secondTime));
 
+            mRemainingTimeView.setVisibility(View.VISIBLE);
+
+            mTimePicker.setVisibility(View.GONE);
+
+            countDownTimer.start();
+        }
+    }
+
+    @SuppressLint("DefaultLocale")
+    private String formatTime(int mm, int ss) {
+        return String.format("%02d:%02d", mm, ss);
     }
 
     private class KitchenTimer extends CountDownTimer {
-
-        private SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss", Locale.JAPAN);
 
         /**
          * @param millisInFuture    The number of millis in the future from the call
@@ -104,18 +106,23 @@ public class HomeFragment extends Fragment {
          * @param countDownInterval The interval along the way to receive
          *                          {@link #onTick(long)} callbacks.
          */
-        public KitchenTimer(long millisInFuture, long countDownInterval) {
+        KitchenTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
 
+        @SuppressLint("DefaultLocale")
         @Override
         public void onTick(long millisUntilFinished) {
-            tick();
+            int minute = (int)(millisUntilFinished / 1000 / 60);
+            int second = (int)(millisUntilFinished / 1000 % 60);
+
+            mRemainingTimeView.setText(formatTime(minute, second));
         }
 
         @Override
         public void onFinish() {
-            // 完了
+            mRemainingTimeView.setVisibility(View.GONE);
+            mTimePicker.setVisibility(View.VISIBLE);
         }
 
 
