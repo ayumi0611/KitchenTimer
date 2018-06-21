@@ -17,9 +17,11 @@
         android:id="@+id/time_picker"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="35dp"
         android:layout_marginStart="35dp"
-        android:layout_weight="2"
+        android:layout_marginTop="20dp"
+        android:layout_weight="3"
         android:orientation="horizontal"
         android:visibility="visible">
 
@@ -35,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="分" />
+            android:text="@string/minutes" />
 
         <NumberPicker
             android:id="@+id/picker2"
@@ -49,7 +51,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="秒" />
+            android:text="@string/seconds" />
 
     </LinearLayout>
 
@@ -57,13 +59,14 @@
         android:id="@+id/remaining_time_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="35dp"
         android:layout_marginStart="35dp"
-        android:layout_weight="2"
-        android:text="10:00"
+        android:layout_marginTop="20dp"
+        android:layout_weight="3"
         android:gravity="center"
-        android:textSize="90sp"
-        android:visibility="gone"/>
+        android:textSize="70sp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,31 +80,27 @@
 
         <Button
             android:id="@+id/button_stop"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:text="@string/stop"
             android:textColor="#ffffff"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button_reset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="7dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/reset"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button_start"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="7dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:text="@string/start"

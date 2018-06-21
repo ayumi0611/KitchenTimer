@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">KitchenTimer</string>
     <string name="add_recipe">add</string>
-    <string name="zero">0</string>
-    <string name="colon">:</string>
     <string name="save">保存</string>
     <string name="back_display">back</string>
-    <string name="reset">リセット</string>
     <string name="stop">ストップ</string>
     <string name="start">スタート</string>
+    <string name="minutes">分</string>
+    <string name="seconds">秒</string>
+
 </resources>
