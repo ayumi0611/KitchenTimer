@@ -56,7 +56,8 @@ public class HomeFragment extends Fragment {
         // viewをidから取得する
         FloatingActionButton transitionRecipeListButton = view.findViewById(R.id.transition_recipe_list);
         // viewにOnClickListenerをセットする
-        transitionRecipeListButton.setOnClickListener(new OnClickTransitionRecipeListListener());
+        // transitionRecipeListButton.setOnClickListener(new OnClickTransitionRecipeListListener());
+        transitionRecipeListButton.setVisibility(View.INVISIBLE);
 
         Button startButton = view.findViewById(R.id.button_start);
         startButton.setOnClickListener(new OnClickStartButton());
