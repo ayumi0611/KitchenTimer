@@ -27,6 +27,8 @@ public class HomeFragment extends Fragment {
     TextView mRemainingTimeView;
     LinearLayout mTimePicker;
 
+    KitchenTimer mKitchenTimer;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class HomeFragment extends Fragment {
 
         Button startButton = view.findViewById(R.id.button_start);
         startButton.setOnClickListener(new OnClickStartButton());
+
+        Button stopButton = view.findViewById(R.id.button_stop);
+        stopButton.setOnClickListener(new OnClickStopButton());
 
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_ALARM)
@@ -91,7 +96,7 @@ public class HomeFragment extends Fragment {
                     .add(R.id.fragment_container, new RecipeListFragment()).commit();
         }
     }
-    
+
 
     private class OnClickStartButton implements View.OnClickListener {
         @SuppressLint("DefaultLocale")
@@ -100,7 +105,7 @@ public class HomeFragment extends Fragment {
             int minuteTime = mMinutePicker.getValue();
             int secondTime = mSecondPicker.getValue() + 1;
 
-            KitchenTimer countDownTimer = new KitchenTimer(minuteTime * 60 * 1000 + secondTime * 1000, 1000);
+            mKitchenTimer = new KitchenTimer(minuteTime * 60 * 1000 + secondTime * 1000, 1000);
 
             mRemainingTimeView.setText(formatTime(minuteTime, secondTime));
 
@@ -110,8 +115,20 @@ public class HomeFragment extends Fragment {
 
             mTimePicker.setVisibility(View.GONE);
 
-            countDownTimer.start();
+            mKitchenTimer.start();
         }
+    }
+
+    private class OnClickStopButton implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            mRemainingTimeView.setVisibility(View.GONE);
+
+            mTimePicker.setVisibility(View.VISIBLE);
+
+            mKitchenTimer.cancel();
+        }
+
     }
 
     @SuppressLint("DefaultLocale")
@@ -135,8 +152,8 @@ public class HomeFragment extends Fragment {
         @SuppressLint("DefaultLocale")
         @Override
         public void onTick(long millisUntilFinished) {
-            int minute = (int)(millisUntilFinished / 1000 / 60);
-            int second = (int)(millisUntilFinished / 1000 % 60);
+            int minute = (int) (millisUntilFinished / 1000 / 60);
+            int second = (int) (millisUntilFinished / 1000 % 60);
 
             mRemainingTimeView.setText(formatTime(minute, second));
         }
