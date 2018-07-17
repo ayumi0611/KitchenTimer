@@ -86,19 +86,6 @@ public class HomeFragment extends Fragment {
         mSoundPool.release();
     }
 
-
-    // OnClickListenerを内包してる
-    private class OnClickTransitionRecipeListListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            // 実際の処理を記述する
-            getActivity().getFragmentManager().beginTransaction()
-                    .hide(HomeFragment.this)
-                    .add(R.id.fragment_container, new RecipeListFragment()).commit();
-        }
-    }
-
-
     private class OnClickStartButton implements View.OnClickListener {
         @SuppressLint("DefaultLocale")
         @Override
